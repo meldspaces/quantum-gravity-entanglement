@@ -23,17 +23,18 @@
 		#threejs canvas { display:block; touch-action:none; }
 		canvas { display:block; }
 
-		.explanation-container {
-			position:relative; z-index:10; padding:8px 0; max-width:920px; margin:0 auto;
-		}
-
 		.overlay {
 			position:fixed; padding:14px; border-radius:12px; background:rgba(0,0,30,0.92);
 			border:2px solid #00ddff; box-shadow:0 0 20px #00ddff44; z-index:10; font-size:0.95em;
 			transition:all 0.3s ease;
 		}
 		.left  { top:8px; left:8px; width:96%; max-width:460px; }
-		.right { top:8px; right:8px; width:96%; max-width:360px; }
+		.right { 
+			top:8px; right:8px; width:96%; max-width:360px; 
+			max-height:calc(100vh - 16px); overflow-y:auto; overflow-x:hidden;
+			scrollbar-width:none; -ms-overflow-style:none;
+		}
+		.right::-webkit-scrollbar { display:none; }
 
 		h1 { margin:0 0 8px 0; color:#00ddff; font-size:1.8em; }
 		h2 { margin:0 0 10px 0; color:#00ffdd; font-size:1.3em; }
@@ -109,19 +110,18 @@
 			.left, .right { font-size:0.85em; padding:10px; }
 		}
 		details.explanation-tabs {
-			position:static; width:calc(100% - 8px); max-width:920px;
-			background:rgba(0,0,30,0.92); border:2px solid #00ddff; border-radius:12px;
-			padding:14px; margin:8px 4px; z-index:5; font-size:0.95em;
+			background:rgba(0,50,80,0.3); border:1px solid #00ddff66; border-radius:8px;
+			padding:10px; margin:0 0 12px 0;
 		}
 		details.explanation-tabs summary {
-			cursor:pointer; font-weight:bold; color:#00ddff; font-size:1.1em;
-			padding:6px; margin:-6px; border-radius:8px; transition:background 0.2s ease;
+			cursor:pointer; font-weight:bold; color:#00ddff; font-size:1.05em;
+			padding:4px; margin:-4px; border-radius:6px; transition:background 0.2s ease;
 		}
 		details.explanation-tabs summary:hover {
-			background:rgba(0,221,255,0.1);
+			background:rgba(0,221,255,0.15);
 		}
 		details.explanation-tabs[open] summary {
-			margin-bottom:12px;
+			margin-bottom:10px;
 		}
 		details.explanation-tabs .info ul {
 			margin:8px 0; padding-left:20px;
@@ -144,55 +144,6 @@
 </head>
 <body>
 	<div id="threejs"></div>
-
-	<div class="explanation-container">
-		<details class="explanation-tabs" open>
-			<summary>
-				✦ Simple Explanation – Anyone Can Understand
-			</summary>
-			<div class="info" style="line-height:1.7;">
-				Imagine the entire universe is made of billions of tiny quantum particles that are all "friends" — they love holding hands (this is called <strong>quantum entanglement</strong>).<br><br>
-				When everything is perfectly connected, the universe is happy.<br><br>
-				The red ball in the demo acts like a bully: it breaks some friendships nearby — we call that "mass".<br><br>
-				The rest of the particles hate broken friendships, so they all pull toward the red ball to try and reconnect.<br><br>
-				That pulling force is <em>exactly</em> the same 1/r² force we call gravity — no curved space, no mysterious gravitons, just the universe trying to stay maximally friendly.<br><br>
-				This idea is no longer science fiction: the mathematics behind this demo is the same used by leading physicists exploring how spacetime itself might emerge from quantum connections.
-			</div>
-		</details>
-
-		<details class="explanation-tabs">
-			<summary>
-				✦ Detailed Scientific Explanation + Peer-Reviewed References
-			</summary>
-			<div class="info" style="line-height:1.75; font-size:0.95em;">
-				This demonstration implements a 3D toy model in which Newtonian gravity (and the weak-field limit of GR) emerges purely from macroscopic quantum entanglement entropy via thermodynamic maximization.<br><br>
-
-				• The 20 000 points represent microscopic quantum degrees of freedom with an entanglement structure combining an area-law term (short-range) and a tuned volume-law term (long-range, holographic).<br><br>
-				• The "mass" M creates a local deficit in entanglement entropy ΔS_ent (analogous to matter reducing boundary entanglement in AdS/CFT).<br><br>
-				• The effective potential is V(r) ∝ −ΔS_ent, so the force is F = −∇(ΔS_ent). With the correct volume-law coefficient, this yields exactly GMm/r² (see the 1D radial charts).<br><br>
-				• The green arrows are the live-computed entropic force field; lime iso-surfaces (when visible) trace constant-ΔS_ent, i.e. equipotential surfaces of the emergent gravitational field.<br><br>
-
-				This is not an analogy — it is the same mathematical mechanism used in modern quantum-gravity research:
-
-				<ul>
-					<li>Jacobson (1995) – First derivation of Einstein equations from horizon thermodynamics<br>
-						<a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.75.1260" target="_blank">Phys. Rev. Lett. 75, 1260</a></li>
-					<li>Verlinde (2011) – Entropic gravity (original paper)<br>
-						<a href="https://arxiv.org/abs/1001.0785" target="_blank">arXiv:1001.0785</a></li>
-					<li>Van Raamsdonk (2010) – Spacetime from entanglement<br>
-						<a href="https://arxiv.org/abs/1005.3035" target="_blank">arXiv:1005.3035</a></li>
-					<li>Ryu & Takayanagi (2006) – Holographic entanglement entropy formula<br>
-						<a href="https://arxiv.org/abs/hep-th/0603001" target="_blank">arXiv:hep-th/0603001</a></li>
-					<li>Cao & McQuinn (2024) – Exact 1/r² from volume-law entanglement (latest direct precursor)<br>
-						<a href="https://arxiv.org/abs/2403.11963" target="_blank">arXiv:2403.11963</a></li>
-					<li>Bianchi et al. (2025) – Emergence of Newtonian potential in tensor-network toy models<br>
-						<a href="https://arxiv.org/abs/2501.08244" target="_blank">arXiv:2501.08244</a></li>
-				</ul>
-
-				In the AdS/CFT correspondence — our only complete non-perturbative quantum gravity theory — bulk geometry (including gravity) literally reconstructs from boundary entanglement. This demo is a drastically simplified but mathematically faithful 3+1D version of that phenomenon.
-			</div>
-		</details>
-	</div>
 
 	<div class="overlay left">
 		<h1>Gravity from Entanglement</h1>
@@ -222,6 +173,54 @@
 
 	<div class="overlay right">
 		<h2>Legend</h2>
+
+		<details class="explanation-tabs" open style="margin-bottom:16px;">
+			<summary>
+				✦ Simple Explanation – Anyone Can Understand
+			</summary>
+			<div class="info" style="line-height:1.7; font-size:0.9em;">
+				Imagine the entire universe is made of billions of tiny quantum particles that are all "friends" — they love holding hands (this is called <strong>quantum entanglement</strong>).<br><br>
+				When everything is perfectly connected, the universe is happy.<br><br>
+				The red ball in the demo acts like a bully: it breaks some friendships nearby — we call that "mass".<br><br>
+				The rest of the particles hate broken friendships, so they all pull toward the red ball to try and reconnect.<br><br>
+				That pulling force is <em>exactly</em> the same 1/r² force we call gravity — no curved space, no mysterious gravitons, just the universe trying to stay maximally friendly.<br><br>
+				This idea is no longer science fiction: the mathematics behind this demo is the same used by leading physicists exploring how spacetime itself might emerge from quantum connections.
+			</div>
+		</details>
+
+		<details class="explanation-tabs" style="margin-bottom:16px;">
+			<summary>
+				✦ Detailed Scientific Explanation + Peer-Reviewed References
+			</summary>
+			<div class="info" style="line-height:1.6; font-size:0.85em;">
+				This demonstration implements a 3D toy model in which Newtonian gravity (and the weak-field limit of GR) emerges purely from macroscopic quantum entanglement entropy via thermodynamic maximization.<br><br>
+
+				• The 20 000 points represent microscopic quantum degrees of freedom with an entanglement structure combining an area-law term (short-range) and a tuned volume-law term (long-range, holographic).<br><br>
+				• The "mass" M creates a local deficit in entanglement entropy ΔS_ent (analogous to matter reducing boundary entanglement in AdS/CFT).<br><br>
+				• The effective potential is V(r) ∝ −ΔS_ent, so the force is F = −∇(ΔS_ent). With the correct volume-law coefficient, this yields exactly GMm/r² (see the 1D radial charts).<br><br>
+				• The green arrows are the live-computed entropic force field; lime iso-surfaces (when visible) trace constant-ΔS_ent, i.e. equipotential surfaces of the emergent gravitational field.<br><br>
+
+				This is not an analogy — it is the same mathematical mechanism used in modern quantum-gravity research:
+
+				<ul style="margin:8px 0; padding-left:18px;">
+					<li style="margin:4px 0;">Jacobson (1995) – First derivation of Einstein equations from horizon thermodynamics<br>
+						<a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.75.1260" target="_blank">Phys. Rev. Lett. 75, 1260</a></li>
+					<li style="margin:4px 0;">Verlinde (2011) – Entropic gravity (original paper)<br>
+						<a href="https://arxiv.org/abs/1001.0785" target="_blank">arXiv:1001.0785</a></li>
+					<li style="margin:4px 0;">Van Raamsdonk (2010) – Spacetime from entanglement<br>
+						<a href="https://arxiv.org/abs/1005.3035" target="_blank">arXiv:1005.3035</a></li>
+					<li style="margin:4px 0;">Ryu & Takayanagi (2006) – Holographic entanglement entropy formula<br>
+						<a href="https://arxiv.org/abs/hep-th/0603001" target="_blank">arXiv:hep-th/0603001</a></li>
+					<li style="margin:4px 0;">Cao & McQuinn (2024) – Exact 1/r² from volume-law entanglement (latest direct precursor)<br>
+						<a href="https://arxiv.org/abs/2403.11963" target="_blank">arXiv:2403.11963</a></li>
+					<li style="margin:4px 0;">Bianchi et al. (2025) – Emergence of Newtonian potential in tensor-network toy models<br>
+						<a href="https://arxiv.org/abs/2501.08244" target="_blank">arXiv:2501.08244</a></li>
+				</ul>
+
+				In the AdS/CFT correspondence — our only complete non-perturbative quantum gravity theory — bulk geometry (including gravity) literally reconstructs from boundary entanglement. This demo is a drastically simplified but mathematically faithful 3+1D version of that phenomenon.
+			</div>
+		</details>
+
 		<div class="legend-item">● <strong style="color:#00ddff">Blue cloud</strong> – Quantum particles</div>
 		<div class="legend-item">● <strong style="color:#ff3366">Red sphere</strong> – “Mass” = missing links</div>
 		<div class="legend-item">→ <strong style="color:#00ff99">Green arrows</strong> – Force from entanglement</div>
